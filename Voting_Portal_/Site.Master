@@ -1,0 +1,75 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Voting_Portal_.Site" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LokMat - Mini Voting & Analytics System</title>
+    <link rel="stylesheet" href="<%= ResolveUrl("~/Css/style.css") %>" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    
+    <style type="text/css">
+        html, body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0b111e !important;
+            background-image: 
+                linear-gradient(90deg, rgba(11, 17, 30, 0.92) 0%, rgba(11, 17, 30, 0.75) 50%, rgba(11, 17, 30, 0.88) 100%),
+                url('<%= ResolveUrl("~/images/bgimage.jpg") %>') !important;
+            background-size: cover !important;
+            background-position: center right !important;
+            background-repeat: no-repeat !important;
+            background-attachment: fixed !important;
+            color: #e2e8f0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header class="navbar">
+            <div class="nav-container">
+                <div class="brand">
+                    <svg class="logo-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 20V10M12 20V4M6 20v-6"/>
+                    </svg>
+                    <span>LokMat Election Portal</span>
+                </div>
+                <nav>
+                    <a href="<%= ResolveUrl("~/Default.aspx") %>" class="nav-btn">Portal Hub</a>
+                    <a href="<%= ResolveUrl("~/Voter/VoterBallot.aspx") %>" class="nav-btn">Ballot</a>
+                    <a href="<%= ResolveUrl("~/Voter/VoterProfile.aspx") %>" class="nav-btn">My Profile</a>
+                    <a href="<%= ResolveUrl("~/Candidate/RegisterCandidate.aspx") %>" class="nav-btn">Candidates</a>
+                    <a href="<%= ResolveUrl("~/Admin/AdminDashboard.aspx") %>" class="nav-btn admin-badge">Admin</a>
+                    <a href="<%= ResolveUrl("~/Registration.aspx") %>" class="nav-btn">Registartion</a>
+                    <asp:LinkButton ID="btnLogout" runat="server" CssClass="nav-btn" OnClick="btnLogout_Click" Visible="false">Logout</asp:LinkButton>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+
+        <footer class="app-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <h3>LokMat Digital Voting System</h3>
+                    <p>Empowering democratic choice through robust data architecture.</p>
+                </div>
+                <div class="footer-copy">
+                    <p>&copy; 2026 LokMat Systems. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </form>
+    <script src="<%= ResolveUrl("~/Js/app.js") %>"></script>
+</body>
+</html>

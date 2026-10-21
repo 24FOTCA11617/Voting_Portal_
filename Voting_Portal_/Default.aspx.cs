@@ -1,35 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Voting_Portal_
 {
     public partial class Default : System.Web.UI.Page
     {
+        SqlConnection con;
+        SqlCommand cmd;
+        //SqlDataAdapter da;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                string conStr = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
-                using (SqlConnection con = new SqlConnection(conStr))
-                {
-                    con.Open();
-                    SqlCommand cmd1 = new SqlCommand("SELECT COUNT(*) FROM Voters", con);
-                    lblVoters.Text = cmd1.ExecuteScalar().ToString();
+                string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
 
-                    SqlCommand cmd2 = new SqlCommand("SELECT ISNULL(SUM(VoteCount),0) FROM Candidates", con);
-                    lblVotes.Text = cmd2.ExecuteScalar().ToString();
+                con = new SqlConnection(s);
+                con.Open();
 
-                    SqlCommand cmd3 = new SqlCommand("SELECT COUNT(*) FROM Candidates", con);
-                    lblCandidates.Text = cmd3.ExecuteScalar().ToString();
-                }
+                cmd = new SqlCommand("SELECT COUNT(*) FROM Voters", con);
+                lblVoters.Text = cmd.ExecuteScalar().ToString();
+
+                cmd = new SqlCommand("SELECT ISNULL(SUM(VoteCount), 0) FROM Candidates", con);
+                lblVotes.Text = cmd.ExecuteScalar().ToString();
+
+                cmd = new SqlCommand("SELECT COUNT(*) FROM Candidates", con);
+                lblCandidates.Text = cmd.ExecuteScalar().ToString();
+
+                con.Close();
             }
-
         }
     }
 }

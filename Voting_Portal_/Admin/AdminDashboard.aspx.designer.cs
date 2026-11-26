@@ -114,22 +114,58 @@ namespace Voting_Portal_.Admin
         protected global::System.Web.UI.WebControls.Label lblLeaderVotes;
 
         /// <summary>
-        /// btnExport control.
+        /// btnElectionResult control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExport;
+        protected global::System.Web.UI.WebControls.Button btnElectionResult;
 
         /// <summary>
-        /// btnReset control.
+        /// CrystalReportViewer1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReset;
+        protected global::CrystalDecisions.Web.CrystalReportViewer CrystalReportViewer1;
+
+        /// <summary>
+        /// btnCandidateReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCandidateReport;
+
+        /// <summary>
+        /// btnVoterReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVoterReport;
+
+        /// <summary>
+        /// btnTurnoutReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnTurnoutReport;
+
+        /// <summary>
+        /// btnAuditReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAuditReport;
 
         /// <summary>
         /// gvLogs control.

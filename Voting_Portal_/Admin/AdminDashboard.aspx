@@ -1,9 +1,10 @@
 ﻿<%@ Page Title="Admin Dashboard" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdminDashboard.aspx.cs" Inherits="Voting_Portal_.Admin.AdminDashboard" %>
 
+<%@ Register Assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <style>
-
         .admin-dashboard {
             width: 100%;
             max-width: 1450px;
@@ -12,26 +13,27 @@
             box-sizing: border-box;
         }
 
-        .admin-header {
+        .admin-header { 
+            
             margin-bottom: 28px;
         }
 
-        .admin-header h1 {
-            margin: 0;
-            color: #f8fafc;
-            font-family: Arial, sans-serif;
-            font-size: 34px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
+            .admin-header h1 {
+                margin: 0;
+                color: #f8fafc;
+                font-family: Arial, sans-serif;
+                font-size: 34px;
+                font-weight: 700;
+                letter-spacing: -0.5px;
+            }
 
-        .admin-header p {
-            margin: 9px 0 0;
-            color: #94a3b8;
-            font-family: Arial, sans-serif;
-            font-size: 15px;
-            line-height: 1.6;
-        }
+            .admin-header p {
+                margin: 9px 0 0;
+                color: #94a3b8;
+                font-family: Arial, sans-serif;
+                font-size: 15px;
+                line-height: 1.6;
+            }
 
         .admin-header-line {
             width: 65px;
@@ -62,38 +64,38 @@
             transition: all 0.25s ease;
         }
 
-        .metric-card:hover {
-            transform: translateY(-3px);
-            border-color: #475569;
-            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.28);
-        }
+            .metric-card:hover {
+                transform: translateY(-3px);
+                border-color: #475569;
+                box-shadow: 0 16px 35px rgba(0, 0, 0, 0.28);
+            }
 
-        .metric-card::after {
-            content: "";
-            position: absolute;
-            right: -25px;
-            bottom: -35px;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: rgba(59, 130, 246, 0.08);
-        }
+            .metric-card::after {
+                content: "";
+                position: absolute;
+                right: -25px;
+                bottom: -35px;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                background: rgba(59, 130, 246, 0.08);
+            }
 
-        .metric-card.orange::after {
-            background: rgba(249, 115, 22, 0.10);
-        }
+            .metric-card.orange::after {
+                background: rgba(249, 115, 22, 0.10);
+            }
 
-        .metric-card.green::after {
-            background: rgba(34, 197, 94, 0.10);
-        }
+            .metric-card.green::after {
+                background: rgba(34, 197, 94, 0.10);
+            }
 
-        .metric-card.blue::after {
-            background: rgba(59, 130, 246, 0.10);
-        }
+            .metric-card.blue::after {
+                background: rgba(59, 130, 246, 0.10);
+            }
 
-        .metric-card.purple::after {
-            background: rgba(168, 85, 247, 0.10);
-        }
+            .metric-card.purple::after {
+                background: rgba(168, 85, 247, 0.10);
+            }
 
         .metric-icon {
             display: flex;
@@ -192,9 +194,9 @@
             border-bottom: 1px solid #26364d;
         }
 
-        .overview-row:last-child {
-            border-bottom: none;
-        }
+            .overview-row:last-child {
+                border-bottom: none;
+            }
 
         .overview-label {
             color: #94a3b8;
@@ -305,16 +307,66 @@
             transition: all 0.2s ease;
         }
 
+
+        /* Crystal Reports Section */
+
+        .reports-section {
+            margin-bottom: 25px;
+        }
+
+        .report-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .report-button {
+            display: block;
+            width: 100%;
+            min-height: 65px;
+            padding: 15px;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            background: #1e293b;
+            color: #f8fafc;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+            .report-button:hover {
+                background: #27364d;
+                border-color: #3b82f6;
+                transform: translateY(-2px);
+            }
+
+            .report-button span {
+                display: block;
+                margin-top: 6px;
+                color: #94a3b8;
+                font-size: 11px;
+                font-weight: 400;
+            }
+
+        @media(max-width:700px) {
+            .report-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
         .admin-export-button {
             background: #334155 !important;
             color: #f8fafc !important;
             border-color: #475569 !important;
         }
 
-        .admin-export-button:hover {
-            background: #475569 !important;
-            transform: translateY(-1px);
-        }
+            .admin-export-button:hover {
+                background: #475569 !important;
+                transform: translateY(-1px);
+            }
 
         .admin-reset-button {
             background: #dc2626 !important;
@@ -322,10 +374,10 @@
             border-color: #ef4444 !important;
         }
 
-        .admin-reset-button:hover {
-            background: #ef4444 !important;
-            transform: translateY(-1px);
-        }
+            .admin-reset-button:hover {
+                background: #ef4444 !important;
+                transform: translateY(-1px);
+            }
 
         .audit-card {
             width: 100%;
@@ -355,51 +407,51 @@
             font-size: 13px;
         }
 
-        .audit-grid th {
-            padding: 15px 14px !important;
-            background: #111c30 !important;
-            color: #f8fafc !important;
-            border: none !important;
-            border-bottom: 2px solid #334155 !important;
-            font-size: 11px !important;
-            font-weight: 700 !important;
-            text-align: left !important;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-        }
+            .audit-grid th {
+                padding: 15px 14px !important;
+                background: #111c30 !important;
+                color: #f8fafc !important;
+                border: none !important;
+                border-bottom: 2px solid #334155 !important;
+                font-size: 11px !important;
+                font-weight: 700 !important;
+                text-align: left !important;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                white-space: nowrap;
+            }
 
-        .audit-grid td {
-            padding: 15px 14px !important;
-            background: #1e293b !important;
-            color: #cbd5e1 !important;
-            border: none !important;
-            border-bottom: 1px solid #334155 !important;
-            vertical-align: middle !important;
-        }
+            .audit-grid td {
+                padding: 15px 14px !important;
+                background: #1e293b !important;
+                color: #cbd5e1 !important;
+                border: none !important;
+                border-bottom: 1px solid #334155 !important;
+                vertical-align: middle !important;
+            }
 
-        .audit-grid tr:hover td {
-            background: #27364d !important;
-        }
+            .audit-grid tr:hover td {
+                background: #27364d !important;
+            }
 
-        .audit-grid tr:last-child td {
-            border-bottom: none !important;
-        }
+            .audit-grid tr:last-child td {
+                border-bottom: none !important;
+            }
 
-        .audit-grid td:first-child {
-            color: #60a5fa !important;
-            font-weight: 700 !important;
-        }
+            .audit-grid td:first-child {
+                color: #60a5fa !important;
+                font-weight: 700 !important;
+            }
 
-        .audit-grid td:nth-child(3) {
-            color: #f8fafc !important;
-            font-weight: 600 !important;
-        }
+            .audit-grid td:nth-child(3) {
+                color: #f8fafc !important;
+                font-weight: 600 !important;
+            }
 
-        .audit-grid td:last-child {
-            color: #94a3b8 !important;
-            white-space: nowrap;
-        }
+            .audit-grid td:last-child {
+                color: #94a3b8 !important;
+                white-space: nowrap;
+            }
 
         .audit-empty {
             padding: 30px;
@@ -482,7 +534,6 @@
                 width: 100%;
             }
         }
-
     </style>
 
 </asp:Content>
@@ -511,16 +562,14 @@
 
                 <div class="metric-icon">👥</div>
 
-                <span class="metric-title">
-                    Registered Voters
+                <span class="metric-title">Registered Voters
                 </span>
 
                 <span class="metric-value">
                     <asp:Label ID="lblRegisteredVoters" runat="server" Text="0" />
                 </span>
 
-                <span class="metric-description">
-                    Total voters registered in the system
+                <span class="metric-description">Total voters registered in the system
                 </span>
 
             </div>
@@ -530,16 +579,14 @@
 
                 <div class="metric-icon">🗳️</div>
 
-                <span class="metric-title">
-                    Total Votes
+                <span class="metric-title">Total Votes
                 </span>
 
                 <span class="metric-value">
                     <asp:Label ID="lblTotalVotes" runat="server" Text="0" />
                 </span>
 
-                <span class="metric-description">
-                    Votes currently recorded
+                <span class="metric-description">Votes currently recorded
                 </span>
 
             </div>
@@ -549,16 +596,14 @@
 
                 <div class="metric-icon">👤</div>
 
-                <span class="metric-title">
-                    Candidates
+                <span class="metric-title">Candidates
                 </span>
 
                 <span class="metric-value">
                     <asp:Label ID="lblCandidates" runat="server" Text="0" />
                 </span>
 
-                <span class="metric-description">
-                    Candidates registered for election
+                <span class="metric-description">Candidates registered for election
                 </span>
 
             </div>
@@ -568,16 +613,14 @@
 
                 <div class="metric-icon">📊</div>
 
-                <span class="metric-title">
-                    Voter Turnout
+                <span class="metric-title">Voter Turnout
                 </span>
 
                 <span class="metric-value">
                     <asp:Label ID="lblTurnout" runat="server" Text="0%" />
                 </span>
 
-                <span class="metric-description">
-                    Percentage of registered voters who voted
+                <span class="metric-description">Percentage of registered voters who voted
                 </span>
 
             </div>
@@ -592,8 +635,7 @@
                 <div class="admin-card-header">
 
                     <div>
-                        <h2 class="admin-card-title">
-                            Election Overview
+                        <h2 class="admin-card-title">Election Overview
                         </h2>
 
                         <p class="admin-card-subtitle">
@@ -608,8 +650,7 @@
 
                     <div class="overview-row">
 
-                        <span class="overview-label">
-                            Registered Voters
+                        <span class="overview-label">Registered Voters
                         </span>
 
                         <span class="overview-value">
@@ -621,8 +662,7 @@
 
                     <div class="overview-row">
 
-                        <span class="overview-label">
-                            Votes Cast
+                        <span class="overview-label">Votes Cast
                         </span>
 
                         <span class="overview-value">
@@ -634,8 +674,7 @@
 
                     <div class="overview-row">
 
-                        <span class="overview-label">
-                            Remaining Voters
+                        <span class="overview-label">Remaining Voters
                         </span>
 
                         <span class="overview-value">
@@ -647,8 +686,7 @@
 
                     <div class="overview-row">
 
-                        <span class="overview-label">
-                            Registered Candidates
+                        <span class="overview-label">Registered Candidates
                         </span>
 
                         <span class="overview-value">
@@ -660,8 +698,7 @@
 
                     <div class="overview-row">
 
-                        <span class="overview-label">
-                            Latest Activity
+                        <span class="overview-label">Latest Activity
                         </span>
 
                         <span class="overview-value">
@@ -679,8 +716,7 @@
 
                 <div class="leader-top">
 
-                    <span class="leader-label">
-                        Leading Contender
+                    <span class="leader-label">Leading Contender
                     </span>
 
                     <div class="leader-icon">
@@ -720,8 +756,7 @@
 
                 <div>
 
-                    <h2 class="admin-card-title">
-                        Administration Tools
+                    <h2 class="admin-card-title">Administration Tools
                     </h2>
 
                     <p class="admin-card-subtitle">
@@ -733,25 +768,68 @@
             </div>
 
 
-            <div class="action-buttons">
 
-                <asp:Button
-                    ID="btnExport"
-                    runat="server"
-                    Text="📥 Export Audit Log (CSV)"
-                    CssClass="admin-action-button admin-export-button"
-                    OnClick="btnExport_Click" />
+            <article class="admin-card reports-section">
+
+                <div class="admin-card-header">
+                    <div>
+                        <h2 class="admin-card-title">Crystal Reports
+            </h2>
+
+                        <p class="admin-card-subtitle">
+                            Generate and download election reports
+           
+                        </p>
+                    </div>
+                </div>
+
+                <div class="report-buttons">
+
+                    <asp:Button
+                        ID="btnElectionResult"
+                        runat="server"
+                        CssClass="report-button"
+                        Text="🏆 Election Result Summary"
+                        OnClick="btnElectionResult_Click" />
+
+                    <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />
+
+                    <asp:Button
+                        ID="btnCandidateReport"
+                        runat="server"
+                        CssClass="report-button"
+                        Text="👤 Candidate-wise Voting Report"
+                        OnClick="btnCandidateReport_Click" />
+
+                    <asp:Button
+                        ID="btnVoterReport"
+                        runat="server"
+                        CssClass="report-button"
+                        Text="📋 Voter Registration Details"
+                        OnClick="btnVoterReport_Click" />
+
+                    <asp:Button
+                        ID="btnTurnoutReport"
+                        runat="server"
+                        CssClass="report-button"
+                        Text="📊 Voter Turnout and Voting Status"
+                        OnClick="btnTurnoutReport_Click" />
+
+                    <asp:Button
+                        ID="btnAuditReport"
+                        runat="server"
+                        CssClass="report-button"
+                        Text="🔍 Voting Activity and Audit Log"
+                        OnClick="btnAuditReport_Click" />
+
+                </div>
+
+            </article>
 
 
-                <asp:Button
-                    ID="btnReset"
-                    runat="server"
-                    Text="⚠️ Emergency Reset Polls"
-                    CssClass="admin-action-button admin-reset-button"
-                    OnClick="btnReset_Click"
-                    OnClientClick="return confirm('WARNING: This will reset all vote counts, voter voting status and audit logs. Continue?');" />
 
-            </div>
+
+           
 
         </article>
 
@@ -762,8 +840,7 @@
 
                 <div>
 
-                    <h2 class="admin-card-title">
-                        Audit Log Stream
+                    <h2 class="admin-card-title">Audit Log Stream
                     </h2>
 
                     <p class="admin-card-subtitle">
@@ -818,8 +895,7 @@
 
                 <span class="status-dot"></span>
 
-                <span>
-                    Election monitoring system is active
+                <span>Election monitoring system is active
                 </span>
 
             </div>
